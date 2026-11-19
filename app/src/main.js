@@ -202,6 +202,7 @@ function renderPhotoTray() {
       if (!slot || slot.photo === i) return;
       history.push();
       slot.photo = i;
+      renderPanelTray();
       redraw();
     });
     tray.appendChild(b);
