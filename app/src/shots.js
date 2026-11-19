@@ -11,7 +11,7 @@
 // window.__shotReady is set once painted.
 import { defaultPanels, retargetPanels } from './state.js';
 
-const SAMPLE_FILES = ['boulevard.jpg', 'pier.jpg', 'scooter.jpg', 'boardwalk.jpg'];
+const SAMPLE_FILES = ['boulevard.jpg', 'pier.jpg', 'scooter.jpg', 'boardwalk.jpg', 'convertible.jpg', 'neon.jpg', 'palms.jpg', 'bonfire.jpg', 'marina.jpg'];
 
 export async function runShot(shot, query, ctx) {
   const { state, loadSample, redraw, syncControls } = ctx;
