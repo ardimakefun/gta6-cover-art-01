@@ -3,20 +3,56 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cover Snap</title>
+<title>Neon Coast Cover Studio</title>
 <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 <main class="app">
-  <section class="controls">
-    <h1>Cover Snap</h1>
-    <p>A photo and a caption, made into a square cover.</p>
-    <label>Photo <input id="photo" type="file" accept="image/*"></label>
-    <label>Caption <input id="caption" type="text" maxlength="40" value="Sunset Heist"></label>
-    <button id="export" type="button">Export PNG 1080 x 1080</button>
-    <p id="status" role="status"></p>
+  <section class="stage">
+    <canvas id="cover" width="900" height="900" aria-label="The cover preview"></canvas>
+    <p class="hint">Click a panel to select it. Drag it to move the photo, scroll to zoom. Drop photos onto the cover.</p>
+    <div id="panels" class="panel-tray" aria-label="Panels"></div>
   </section>
-  <canvas id="cover" width="1080" height="1080" aria-label="The cover"></canvas>
+  <section class="controls">
+    <h1>Neon Coast<br>Cover Studio</h1>
+    <p class="tagline">Your photos, made into GTA-style cover art. Offline, on your machine.</p>
+
+    <h2>Photos</h2>
+    <p class="note">Click a photo to put it in the selected panel.</p>
+    <div id="photos" class="photo-tray" aria-label="Photos"></div>
+
+    <h2>Layout</h2>
+    <div id="layouts" class="picks" aria-label="Layout"></div>
+
+    <h2>Grade</h2>
+    <div id="grades" class="picks" aria-label="Grade"></div>
+
+    <h2>Caption</h2>
+    <label>Title <input id="title" type="text" maxlength="40" value="Neon Shore"></label>
+    <label>Subtitle <input id="subtitle" type="text" maxlength="60" value="a golden hour story"></label>
+
+    <h2>Heat</h2>
+    <div id="heat" class="picks" aria-label="Heat"></div>
+
+    <h2>Selected panel</h2>
+    <label><span id="zoomLabel">Zoom 100%</span>
+      <input id="zoom" type="range" min="50" max="400" value="100">
+    </label>
+    <button id="resetCrop" type="button" class="ghost">Reset crop</button>
+
+    <h2>Export</h2>
+    <div id="sizes" class="picks" aria-label="Export size"></div>
+    <div class="export-row">
+      <button id="export" type="button">Export PNG</button>
+      <button id="exportAll" type="button" class="ghost">Export all 4 sizes</button>
+    </div>
+    <div class="undo-row">
+      <button id="undo" type="button" class="ghost">Undo</button>
+      <button id="redo" type="button" class="ghost">Redo</button>
+    </div>
+    <p id="status" role="status"></p>
+    <p class="fine">All art, lettering and fonts are original or SIL OFL licensed. No Rockstar Games logo, artwork or font.</p>
+  </section>
 </main>
 <script type="module" src="./src/main.js"></script>
 </body>
