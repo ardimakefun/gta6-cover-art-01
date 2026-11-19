@@ -65,8 +65,11 @@ function drawPhotoInPanel(pctx, photo, rect, transform) {
   const maxOy = Math.max(0, (dh - rect.h) / 2);
   const cx = Math.max(-maxOx, Math.min(maxOx, ox));
   // Default framing favours the top of the photo (faces sit high) by a
-  // good share of the vertical overflow; dragging overrides it.
-  const cy = Math.max(-maxOy, Math.min(maxOy, oy + maxOy * 0.35));
+  // good share of the vertical overflow; dragging overrides it. Tall
+  // panels already crop a lot vertically, so they get a gentler bias —
+  // otherwise a landscape photo loses its lower half (street, sand).
+  const bias = rect.h > rect.w ? 0.15 : 0.35;
+  const cy = Math.max(-maxOy, Math.min(maxOy, oy + maxOy * bias));
   pctx.drawImage(photo, (rect.w - dw) / 2 + cx, (rect.h - dh) / 2 + cy, dw, dh);
 }
 

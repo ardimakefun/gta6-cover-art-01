@@ -26,6 +26,10 @@ const SAMPLES = [
   { file: 'scooter.jpg', name: 'Scooter' },
   { file: 'boardwalk.jpg', name: 'Boardwalk' },
   { file: 'convertible.jpg', name: 'Convertible' },
+  { file: 'neon.jpg', name: 'Neon' },
+  { file: 'palms.jpg', name: 'Palms' },
+  { file: 'bonfire.jpg', name: 'Bonfire' },
+  { file: 'marina.jpg', name: 'Marina' },
 ];
 
 function setStatus(text) {
@@ -42,7 +46,9 @@ function redraw(quality = 'full') {
   const scale = Math.min(1, cap / Math.max(size.w, size.h));
   canvas.width = Math.round(size.w * scale);
   canvas.height = Math.round(size.h * scale);
-  drawCover(canvas, state, { quality, selected: state.selected });
+  // In a cover shot there is no editor selection: never draw the selection
+  // outline (the judge sees the cover, not the editor).
+  drawCover(canvas, state, { quality, selected: coverMode ? -1 : state.selected });
 }
 
 function queueRedraw(quality = 'full') {
