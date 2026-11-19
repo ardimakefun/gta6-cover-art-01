@@ -25,16 +25,21 @@ const SAMPLES = [
   { file: 'pier.jpg', name: 'Pier' },
   { file: 'scooter.jpg', name: 'Scooter' },
   { file: 'boardwalk.jpg', name: 'Boardwalk' },
+  { file: 'convertible.jpg', name: 'Convertible' },
 ];
 
 function setStatus(text) {
   statusEl.textContent = text;
 }
 
-/** Redraws the preview at the selected export aspect, capped at 900 px. */
+/** Redraws the preview at the selected export aspect. In a cover shot the
+ *  canvas is drawn at the viewport size (up to the 1280 px gate) so the
+ *  screenshot is crisp; in the editor it is capped at 900 px. */
 function redraw(quality = 'full') {
   const size = EXPORT_SIZES.find((s) => s.id === state.exportSize) || EXPORT_SIZES[0];
-  const scale = Math.min(1, 900 / Math.max(size.w, size.h));
+  const coverMode = document.body.classList.contains('shot-cover');
+  const cap = coverMode ? 1280 : 900;
+  const scale = Math.min(1, cap / Math.max(size.w, size.h));
   canvas.width = Math.round(size.w * scale);
   canvas.height = Math.round(size.h * scale);
   drawCover(canvas, state, { quality, selected: state.selected });

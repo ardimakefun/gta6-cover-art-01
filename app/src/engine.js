@@ -64,7 +64,9 @@ function drawPhotoInPanel(pctx, photo, rect, transform) {
   const maxOx = Math.max(0, (dw - rect.w) / 2);
   const maxOy = Math.max(0, (dh - rect.h) / 2);
   const cx = Math.max(-maxOx, Math.min(maxOx, ox));
-  const cy = Math.max(-maxOy, Math.min(maxOy, oy));
+  // Default framing favours the top of the photo (faces sit high) by a
+  // good share of the vertical overflow; dragging overrides it.
+  const cy = Math.max(-maxOy, Math.min(maxOy, oy + maxOy * 0.35));
   pctx.drawImage(photo, (rect.w - dw) / 2 + cx, (rect.h - dh) / 2 + cy, dw, dh);
 }
 

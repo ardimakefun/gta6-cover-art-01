@@ -15,7 +15,7 @@ export const GRADES = [
     name: 'Neon Vice',
     // teal shadows -> magenta mid -> hot pink highlights
     stops: [[0, '#04121f'], [0.35, '#0e4d5c'], [0.65, '#b3127f'], [0.85, '#ff4fd8'], [1, '#ffe3f6']],
-    mix: 0.78,
+    mix: 0.72,
     tint: 'rgba(255, 40, 180, 0.10)',
   },
   {
